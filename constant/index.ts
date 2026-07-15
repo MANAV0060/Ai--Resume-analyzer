@@ -233,6 +233,12 @@ export const prepareInstructions = ({
   jobDescription: string;
 }) =>
   `You are an expert in ATS (Applicant Tracking System) and resume analysis.
+
+      CRITICAL VALIDATION STEP:
+      First, evaluate if the uploaded document is actually a resume or CV.
+      - If the document is NOT a resume (for example, if it is a certificate, legal document, blank page, generic photo, receipt, panchnama, ID card, book page, code snippet, etc.), you MUST set all scores (overallScore, ATS.score, toneAndStyle.score, content.score, structure.score, skills.score) to 0. In this case, for the tips array in every category, provide exactly one tip with type "improve", where 'tip' is "Invalid Document" and 'explanation' clearly explains what the document appears to be (e.g., a certificate, handwritten note, or panchnama) and requests that the user upload a valid resume.
+
+      If it IS a valid resume, proceed with the analysis:
       Please analyze and rate this resume and suggest how to improve it.
       The rating can be low if the resume is bad.
       Be thorough and detailed. Don't be afraid to point out any mistakes or areas for improvement.
